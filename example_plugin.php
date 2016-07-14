@@ -9,11 +9,17 @@
  * Author URI: https://www.beaverlodgehq.com
  */
 
-/* replace custom with correct case */
-/* replace CUSTOM with correct case */
+/* 
+replace custom with correct case
+replace CUSTOM with correct case
+change https://beaverlodgehq.com to your store url
+change Custom Item to your download name
+change 1.0.0 to your version
+change Beaverlodge HQ to your author name
+*/
 
 define( 'SW_CUSTOM_STORE_URL', 'https://beaverlodgehq.com' );
-define( 'SW_CUSTOM_ITEM_NAME', '404 Page' );
+define( 'SW_CUSTOM_ITEM_NAME', 'Custom Item' );
 define( 'SW_CUSTOM_VERSION', '1.0.0' );
 define( 'SW_CUSTOM_AUTHOR', 'Beaverlodge HQ' );
 
