@@ -23,6 +23,7 @@ add_action( 'admin_menu', 'pbext_add_admin_menu' );
 
 function pbext_options_page(  ) { 
     ?>
+            <div id="top"></div>
             <h2>Page Builder Extensions</h2>
             
             <ul class="nav nav-tabs" id="pbextTabs">
@@ -55,6 +56,7 @@ function pbext_options_page(  ) {
                 </div>
                 <?php do_action('page_builder_extension_panel'); ?>
             </div>
+            <a href="#top" id="back-to-top" class="top"></a>
     <?php    
 }
 
@@ -63,9 +65,38 @@ function pbext_add_bootstrap_styles($hook) {
   if   ( $hook == $pagebuilder_extension_settings_page ) {
       wp_enqueue_style( 'bootstrap_styles', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' );
       wp_enqueue_script( 'bootstrap_script', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js' );
+      wp_enqueue_script( 'smoothscroll', plugins_url( '/smoothscroll.js' , __FILE__ ), array( 'jquery' ) );
       $custom_css = "
                  #wpbody-content{
                         background: #fff;
+                }
+                .top.is-visible {
+                  visibility: visible;
+                  opacity: 1;
+                }
+                .top.fade-out {
+                  opacity: .5;
+                }
+                .top {
+                    display: inline-block;
+                    height: 40px;
+                    width: 40px;
+                    position: fixed;
+                    bottom: 50px;
+                    right: 10px;
+                    z-index: 10;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+                    overflow: hidden;
+                    text-indent: 100%;
+                    white-space: nowrap;
+                    background: #0085ba url(" . plugins_url( '/page-builder-extensions/top-arrow.svg') . ") no-repeat center 50%;
+                    opacity: 0;
+                    -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+                    -moz-transition: opacity .3s 0s, visibility 0s .3s;
+                    transition: opacity .3s 0s, visibility 0s .3s;
+                }
+                .top.show {
+                    opacity: 1;
                 }";
         wp_add_inline_style( 'bootstrap_styles', $custom_css );
   }
